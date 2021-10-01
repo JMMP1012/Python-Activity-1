@@ -1,0 +1,92 @@
+import random
+#sample text-based game with simple conditional statement
+character_health = 100
+DungeonGuardian_health = 100
+Arachne_health = 10000
+character_power= 25
+item = ""
+
+name = input("Enter your name: ")
+print("Hello " + name)
+
+while character_health > 0:
+    if character_health != 100 and item == "Fish":
+        n = input("You have taken some damage to heal select [1 to heal/ 0 to ignore]")
+        if n == "1":
+            character_health += 10
+            print("Your character's health is back to " + str(character_health))
+        else :
+             print("Your character's health is back to " + str(character_health))
+        
+
+    v = int(input("Choose 1 if you want to cross the river\nChoose 2 if you want to jump on the ravine\nChoose 3 if you want to fight monster in the dungeon \nInput: "))
+   
+    #Start of Journey
+    if v == 1: 
+        choice = input("If you want to go fishing select [1 for yes/ 0 for no]")
+        if choice == "1":
+            #Fishing minigame
+            print("You have chosen Fishing! ")
+            chance = random.randint(0,9)
+            if chance > 6:
+                item = "Fish"
+                print("You have catch a Fish!")
+            else:
+                print("There is no fish to catch")
+
+        elif choice == "0":
+            print("You have crossed the river")
+
+
+    elif v == 2:
+        #damages the player
+        print("You have jumped into the ravine")
+        print("Your character has taken 10pt of damage")
+        character_health = character_health - 10
+
+    elif v == 3:
+        #fighting the monster
+        print("You have enter the dungeon")
+        print("You saw a Monster which they called the DUNGEON GUARDIAN")
+        answer = input("Which weapon do you want to use to defeat the monster? [1 for Destructive Blade/ 2 for Holy Rapier]")
+        if answer == "1":    
+            print("You choose and use the Destructive Blade on Ice Dungeon Guardian")
+            DungeonGuardian_health = DungeonGuardian_health - 50
+            print("The Dungeon Guardian didn't die ")
+            print("The guardian strikes up a a big gravity wave directly leaving a big damage to you")
+            character_health = character_health - 100
+            print("The monster's Health: " + str(DungeonGuardian_health))
+            
+        elif answer == "2":
+            print("You choose and use the Holy Rapier on Dungeon Guardian")
+            print("The Dungeon Guardian is weak to holy or Light elements ")
+            DungeonGuardian_health = DungeonGuardian_health - 100
+            print("The Dungeon Guardian is dead " + str(DungeonGuardian_health))
+            print("You kill the Dungeon Guardian and you obtain his power ")
+            character_power = character_power + 250
+            print("Your character's Power increase by: " + str(character_power))
+            character_health = character_health - 0
+           
+            another = input("what you gonna do next after you defeat the guardian [1 Exit to the dungeon/ 2 Go deep down inside dungeon]")
+            if another == "1":
+                print("you are already out of the dungeon")
+
+            elif another == "2":
+                print("You saw another monster")
+                print("The monster is what they called ARACHNE")
+                
+                second = input("Do you want to fight the lady ARACHNE? [1 YES/ 2 run away]")
+            if second == "1":
+                print("you fight the Arachne and cuts of her spider legs")
+                Arachne_health = Arachne_health - 30
+                print("The Arachne used a healing spell to heal her wounded spider leg")
+                print("The Arachne jumped in front of you and stabbed you with her mighty hand claws")
+                character_health = character_health - 100
+            else :
+                print("You run away back to the exit way of the dungeon but the monster hit you")
+                print("You slighty injured")
+                character_health = character_health - 30
+            
+            print("Your character's Health: " + str(character_health))
+            break
+print("Game Over")
